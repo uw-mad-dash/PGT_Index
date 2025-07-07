@@ -15,10 +15,13 @@ This repository is an extension of [PyTorch Geometric Temporal](https://github.c
 
 
 
+
+
 --------------------------------------------------------------------------------
 **Singe Node Testing**
 
 Examples used for testing our methods in a single-GPU context can be found in the `single_gpu_testing` folder. To recreate our experiments, begin by `cd single_gpu_testing/`
+
 
 To run single GPU experiments, run the script with the dataset in its name (e.g. `python3 chicken_pox_main.py`). Each script uses the following command-line arguments:
 
@@ -34,10 +37,11 @@ Once training completes, there will be three files in the current directory:
 * per_epoch_stats.csv: each epochs runtime, training MAE, and validation MAE.
 * system_stats.csv: per-second system and GPU memory usage.
 
+**Note that `metr_la_main.py` uses A3T-GCN rather than DCRNN.** 
 
 --------------------------------------------------------------------------------
 
-**DDP and Multi-Node Testing**
+**PGT DDP and Multi-Node Testing**
 
 Our DDP scripts can be found in `ddp_testing`. By default, the scripts will run on a single machine using a [Dask local cluster](https://docs.dask.org/en/stable/deploying-python.html#localcluster), allowing the user to select the number of GPUs to use. We also performed testing on SUPERCOMPUTER with up to 32 nodes (128 GPUs) using Dask's command line interface. We include an example submit script -- `submit.sh` for future use. By changing the `nodes` variable, you can change the number of workers and by changing `gpus` the number of GPUs per node. We profiled our code on a node-wide level using `worker_monitor.py`, but its launch command is commented out in `submit.sh`.
 
@@ -81,6 +85,9 @@ To run the further optimized Dask distributed data parallel training with batch-
 | `--npar`             | `-np`      | `int`   | `1`        | The number of GPUs or workers per node.                                 |
 | `--dataset`          |            | `str`   | `pems-bay` | Specifies the dataset to use. Valid options include 'pems-bay', 'pems-all-la', and 'pems'.                                |
 
+**ST-LLM**
+--------------------------------------------------------------------------------
+To demostrate distributed-index-batching's broader applicability, we intergrated it into [ST-LLM](https://github.com/ChenxiLiu-HNU/ST-LLM/tree/e979181c6d8359bb1f2a6ad4b85c7a2c6874432f) from [Spatial-Temporal Large Language Model for Traffic Prediction](https://arxiv.org/abs/2401.10134). The code is contained within TODO
 
 ---------------------------------------------------------
 **Datasets**
@@ -90,6 +97,7 @@ We tested and compared model performance with the following PyTorch Geometric Te
 * Hungary Chickenpox 
 * PeMS-BAY
 * Windmill-Large
+* Metr-LA
 
 And we employed the following two larger datasets to test single-GPU scalability and multi-GPU, multi-node distributed DDP training scalability:
 * PeMS-All-LA
@@ -116,19 +124,4 @@ pip3 install .
 [pyg-install]: https://pytorch-geometric.readthedocs.io/en/latest/notes/installation.html
 
 
---------------------------------------------------------------------------------
-**Our code**
-Our driver files are contained within the `single_gpu_testing` and `ddp_testing` folders. Additionally, while not an exhaustive list, these are the primary notable changes to the internal PyTorch Geometric Temporal code.
-
-We modified the following PyTorch Geometric Temporal files:
-* dcrnn.py: added a version of DCRNN that supports seq-to-seq prediction and batching
-* windmilllarge.py: added seq-to-seq preproccessing options
-* chickenpox.py: added seq-to-seq preproccessing options
-* pems_bay.py: added a flag to allow the data to remain in the format orginally used in the DCRNN paper
-
-We added the following files to the PyTorch Geometric Temporal package:
-* dask_batching.py: implements Dask preprocessing and Dask-Pytorch compatible batching
-* index_batching.py: implements index preprocessing and index-Pytorch compatible batching
-
---------------------------------------------------------------------------------
 
