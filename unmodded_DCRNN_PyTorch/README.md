@@ -3,7 +3,7 @@
 ![Diffusion Convolutional Recurrent Neural Network](figures/model_architecture.jpg "Model Architecture")
 
 
-**Note this is a local clone of DCRNN that was modified with timing and profiling capabilties for an SC 2025 submission**
+**Note this is a local clone of [DCRNN](https://github.com/chnsh/DCRNN_PyTorch) that was modified with timing and profiling capabilities for an SC 2025 submission**
 
 
 This is a PyTorch implementation of Diffusion Convolutional Recurrent Neural Network in the following paper: \
