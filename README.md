@@ -85,8 +85,9 @@ To run the further optimized Dask distributed data parallel training with batch-
 | `--npar`             | `-np`      | `int`   | `1`        | The number of GPUs or workers per node.                                 |
 | `--dataset`          |            | `str`   | `pems-bay` | Specifies the dataset to use. Valid options include 'pems-bay', 'pems-all-la', and 'pems'.                                |
 
-**ST-LLM**
 --------------------------------------------------------------------------------
+**ST-LLM**
+
 To demostrate distributed-index-batching's broader applicability, we intergrated it into [ST-LLM](https://github.com/ChenxiLiu-HNU/ST-LLM/tree/e979181c6d8359bb1f2a6ad4b85c7a2c6874432f) from [Spatial-Temporal Large Language Model for Traffic Prediction](https://arxiv.org/abs/2401.10134). The code is contained within TODO
 
 ---------------------------------------------------------
