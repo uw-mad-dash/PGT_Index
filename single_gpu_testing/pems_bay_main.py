@@ -197,15 +197,15 @@ def main():
         pre_t1 = time.time()
         
         if allGPU == True:
-            data, mean, std, x_train, x_val, x_test = IndexDataset.preprocess("data/pems_bay.h5", 12,"pems-bay", h5_key="speed", add_time_in_day=True,gpu=0)
+            # data, mean, std, x_train, x_val, x_test = IndexDataset.preprocess("data/pems-bay.h5", 12,"pems-bay", h5_key="speed", add_time_in_day=True,gpu=0)
             
             # version that allows direct comparison to the existing PGT pems-bay dataset - it has a few less entries
-            # data, mean, std, x_train, x_val, x_test = IndexDataset.preprocess("data/pems_node_values.npy", 12,"pems-bay", h5_key="speed", add_time_in_day=True,gpu=0, compare_to_pgt=True)
+            data, mean, std, x_train, x_val, x_test = IndexDataset.preprocess("data/pems_node_values.npy", 12,"pems-bay", h5_key="speed", add_time_in_day=True,gpu=0, compare_to_pgt=True)
         else:
-            data, mean, std, x_train, x_val, x_test = IndexDataset.preprocess("data/pems_bay.h5", 12,"pems-bay", h5_key="speed", add_time_in_day=True)
+            # data, mean, std, x_train, x_val, x_test = IndexDataset.preprocess("data/pems-bay.h5", 12,"pems-bay", h5_key="speed", add_time_in_day=True)
             
             # version that allows direct comparison to the existing PGT pems-bay dataset - it has a few less entries
-            # data, mean, std, x_train, x_val, x_test = IndexDataset.preprocess("data/pems_node_values.npy",12,"pems-bay", h5_key="speed",add_time_in_day=True, compare_to_pgt=True)
+            data, mean, std, x_train, x_val, x_test = IndexDataset.preprocess("data/pems_node_values.npy",12,"pems-bay", h5_key="speed",add_time_in_day=True, compare_to_pgt=True)
      
         pre_t2 = time.time()
         print("Preprocessing: ", pre_t2 - pre_t1, flush=True)
