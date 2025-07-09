@@ -278,7 +278,7 @@ def main():
         Wait([mean, std, x_train, y_train, x_val, y_val, x_test, y_test])
         
         if dist:
-            for f in ['utils.py', "opt_dask.py"]:
+            for f in ['utils.py', "opt_baseline.py"]:
                 print("Uploading ", f, flush=True)
                 client.upload_file(f)
 
