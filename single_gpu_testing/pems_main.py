@@ -1,6 +1,7 @@
 import time 
 import csv
 
+import torch
 from torch_geometric_temporal.nn.recurrent import BatchedDCRNN as DCRNN
 from torch_geometric_temporal.dataset import IndexDataset
 from torch.utils.data import DataLoader, TensorDataset
