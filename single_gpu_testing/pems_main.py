@@ -137,7 +137,7 @@ def main():
     print(args.mode,allGPU, flush=True)
     debug = args.debug.lower() == "true"
     batch_size = 64
-    epochs = 100
+    epochs = 30
 
     if not os.path.isdir("data"):
         raise FileNotFoundError("Error: The 'data/' subdirectory is missing. "
@@ -197,7 +197,7 @@ def main():
 
         train_dataloader = DataLoader(train_dataset, batch_size=batch_size, shuffle=True)
         val_dataloader = DataLoader(val_dataset, batch_size=batch_size, shuffle=False)
-        t_min, v_min = train(train_dataloader, val_dataloader, mean, std, epochs, 12,2716,2, allGPU=allGPU, debug=debug)
+        t_min, v_min = train(train_dataloader, val_dataloader, mean, std, epochs, 12,11160,2, allGPU=allGPU, debug=debug)
         train_t2 = time.time()
         print("Training: ", train_t2 - train_t1, flush=True)
 
