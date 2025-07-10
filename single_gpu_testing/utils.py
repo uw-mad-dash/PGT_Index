@@ -152,15 +152,15 @@ def collect_metrics(failsafe=False):
                     writer.writerow(headers)
                     writer.writerows(data)
 
+                if os.path.isfile("stats.csv"):
+                    df = pd.read_csv("stats.csv")
+                    df['system_memory_total'] = system_memory_total
+                    df['max_system_mem'] = max_system_mem
+                    df['gpu_memory_total'] = gpu_memory_total
+                    df['max_gpu_mem'] = max_gpu_mem
                     
-                df = pd.read_csv("stats.csv")
-                df['system_memory_total'] = system_memory_total
-                df['max_system_mem'] = max_system_mem
-                df['gpu_memory_total'] = gpu_memory_total
-                df['max_gpu_mem'] = max_gpu_mem
-                
-                df.to_csv("stats.csv", index=False)
-                break
+                    df.to_csv("stats.csv", index=False)
+                    break
             time.sleep(1)
 
     except Exception as e:
