@@ -9,12 +9,6 @@ install_requires = [
     "torch_geometric",
     "numpy",
     "networkx",
-    "dask",
-    "dask[dataframe]",
-    "pynvml", 
-    "tables",
-    "dask_pytorch_ddp",
-    "distributed",
 ]
 tests_require = ["pytest", "pytest-cov", "mock", "networkx", "tqdm"]
 
