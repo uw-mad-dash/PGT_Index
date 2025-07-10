@@ -1,0 +1,9 @@
+torch==2.4.1
+torch-geometric==2.6.1
+pynvml
+tables
+dask[dataframe]
+dask_pytorch_ddp
+distributed
+wheel
+matplotlib
