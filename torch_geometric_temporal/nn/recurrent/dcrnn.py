@@ -297,6 +297,7 @@ class updatedDConv(MessagePassing):
             * **H** (PyTorch Float Tensor) - Hidden state matrix for all nodes.
         """
 
+        # note that is assumes the graph is static
         if self._cached == False or X.size(0) != self._cached_batch_size:
             row, col = edge_index
             deg_out = torch.zeros(X.size(0), device=X.device).scatter_add_(0, row, edge_weight)
