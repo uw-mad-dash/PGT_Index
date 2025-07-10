@@ -82,7 +82,6 @@ def train(train_dataloader, val_dataloader, mean, std, epochs, seq_length, num_n
             if debug:
                 print(f"Train Batch: {i}/{total}", end="\r")
                 i+=1
-            # break
         
 
         train_loss /= len(train_dataloader)
@@ -138,7 +137,7 @@ def main():
     print(args.mode,allGPU, flush=True)
     debug = args.debug.lower() == "true"
     batch_size = 64
-    epochs = 30
+    epochs = 100
 
     if not os.path.isdir("data"):
         raise FileNotFoundError("Error: The 'data/' subdirectory is missing. "
@@ -209,12 +208,10 @@ def main():
             data, mean, std, x_train, x_val, x_test = IndexDataset.preprocess("data/pems.h5", 12,"pems", h5_key="df", add_time_in_day=True,gpu=0)
         else:
             data, mean, std, x_train, x_val, x_test = IndexDataset.preprocess("data/pems.h5",12,"pems", h5_key="df",add_time_in_day=True)
-        # print(mean,std)
-        # exit()
+
         pre_t2 = time.time()
         print("Preprocessing: ", pre_t2 - pre_t1, flush=True)
 
-        print(x_train.shape, x_val.shape, x_test.shape)
         train_t1 = time.time()
         
         train_dataset = IndexDataset(x_train,data,12,gpu=allGPU)
