@@ -1,0 +1,21 @@
+{
+    "device": "cuda:0",
+    "data": "pems-bay",
+    "data_key": "speed",
+    "input_dim": 3,
+    "channels": 64,
+    "num_nodes": 250,
+    "input_len": 12,
+    "output_len": 12,
+    "batch_size": 64,
+    "learning_rate": 0.001,
+    "dropout": 0.1,
+    "weight_decay": 0.0001,
+    "epochs": 1,
+    "print_every": 1,
+    "save": "./logs/",
+    "es_patience": 100,
+    "mode": "local",
+    "npar": 4,
+    "debug": true
+}
