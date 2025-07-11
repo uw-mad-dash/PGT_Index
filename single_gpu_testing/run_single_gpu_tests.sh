@@ -1,5 +1,8 @@
 #!/bin/bash
 
+
+unzip -n data/PEMS-BAY.zip -d data/
+
 # Check that num_iters was provided
 if [ -z "$1" ]; then
   echo "Usage: $0 <num_iters>"
@@ -14,15 +17,15 @@ do
     echo "Running iteration $i"
 
 
-    python3 chicken_pox_main.py -m base  > output.log 2>&1
-    mkdir chickenPoxBase${i}
-    mv *.csv chickenPoxBase${i}/
-    mv output.log chickenPoxBase${i}/
+    # python3 chicken_pox_main.py -m base  > output.log 2>&1
+    # mkdir chickenPoxBase${i}
+    # mv *.csv chickenPoxBase${i}/
+    # mv output.log chickenPoxBase${i}/
 
-    python3 chicken_pox_main.py -m index  > output.log 2>&1
-    mkdir chickenPoxIndex${i}
-    mv *.csv chickenPoxIndex${i}/
-    mv output.log chickenPoxIndex${i}/
+    # python3 chicken_pox_main.py -m index  > output.log 2>&1
+    # mkdir chickenPoxIndex${i}
+    # mv *.csv chickenPoxIndex${i}/
+    # mv output.log chickenPoxIndex${i}/
     
     
     python3 pems_bay_main.py -m base  > output.log 2>&1
@@ -36,15 +39,15 @@ do
     mv output.log PemsBayIndex${i}/
     
 
-    python3 windmill_main.py -m base  > output.log 2>&1
-    mkdir WindmillBase${i}
-    mv *.csv WindmillBase${i}/
-    mv output.log WindmillBase${i}/
+    # python3 windmill_main.py -m base  > output.log 2>&1
+    # mkdir WindmillBase${i}
+    # mv *.csv WindmillBase${i}/
+    # mv output.log WindmillBase${i}/
 
-    python3 windmill_main.py -m index  > output.log 2>&1
-    mkdir WindmillIndex${i}
-    mv *.csv WindmillIndex${i}/
-    mv output.log WindmillIndex${i}/
+    # python3 windmill_main.py -m index  > output.log 2>&1
+    # mkdir WindmillIndex${i}
+    # mv *.csv WindmillIndex${i}/
+    # mv output.log WindmillIndex${i}/
 
 
 done

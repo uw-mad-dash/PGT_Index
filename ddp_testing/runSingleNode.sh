@@ -1,3 +1,5 @@
+mkdir -p data
+
 python3 pems_ddp.py -m index -np 4 -g true > output.log 2>&1
 mkdir PemsIndex
 mv *.csv PemsIndex/

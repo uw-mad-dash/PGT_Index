@@ -16,7 +16,7 @@ else
     exit 1
 fi
 
-
+mkdir -p data/
 
 total=$((gpus * nodes))
 
