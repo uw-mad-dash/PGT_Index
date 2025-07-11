@@ -36,8 +36,9 @@ def collect_metrics_by_prefix(prefix):
         return None
 
     mean, std = summarize_metrics(results)
-    print(f"\n== Summary for {prefix} ==")
+    print(f"\n== {prefix} Summary ==")
     print("Mean:\n", mean)
+    print()
     print("Std Dev:\n", std)
 
 # Run the analysis
