@@ -1,9 +1,11 @@
+wheel
 torch==2.4.1
 torch-geometric==2.6.1
+torch-scatter==2.1.2
+torch-sparse==0.6.18
 pynvml
 tables
 dask[dataframe]
 dask_pytorch_ddp
 distributed
-wheel
 matplotlib
