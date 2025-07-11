@@ -12,7 +12,8 @@ import argparse
 from utils import *
 import threading
 import os
-
+import requests
+from tqdm import tqdm
 
 def parse_arguments():
     """Parse command-line arguments."""
@@ -30,9 +31,29 @@ def parse_arguments():
     return parser.parse_args()
 
 
+def downloadCheck():
+    if not os.path.isdir("data"):
+        raise FileNotFoundError("Error: The 'data/' subdirectory is missing. "
+                                "Scripts assume data and adjacency matrix files will be placed in 'data/'.")
+    else:
+        PeMS_file_links = {
+        "adj_mx_pems.pkl" : "https://anl.app.box.com/shared/static/4143x1repqa1u26aiz7o2rvw3vpcu0wp",
+        "pems.h5": "https://anl.app.box.com/shared/static/7hfhtie02iufy75ac1d8g8530majwci0"
+        }          
+        
+        for key in PeMS_file_links.keys():
+            if not os.path.isfile(os.path.join("./data/",key)):
+                print("Downloading ", key, flush=True)
+                response = requests.get(PeMS_file_links[key], stream=True)
+                file_size = int(response.headers.get('content-length', 0))
 
+                with open(os.path.join("./data/", key), "wb") as file, tqdm(total=file_size, unit="B", unit_scale=True, unit_divisor=1024) as progress_bar:
+                    for chunk in response.iter_content(chunk_size=33554432):
+                        file.write(chunk)
+                        progress_bar.update(len(chunk))
 
 def train(train_dataloader, val_dataloader, mean, std, epochs, seq_length, num_nodes, num_features, allGPU=False, debug=False):
+    
     
     # Load graph structure
     sensor_ids, sensor_id_to_ind, adj_mx = load_graph_data("data/adj_mx_pems.pkl")
@@ -83,7 +104,7 @@ def train(train_dataloader, val_dataloader, mean, std, epochs, seq_length, num_n
             if debug:
                 print(f"Train Batch: {i}/{total}", end="\r")
                 i+=1
-        
+            
 
         train_loss /= len(train_dataloader)
 
@@ -140,10 +161,7 @@ def main():
     batch_size = 64
     epochs = 30
 
-    if not os.path.isdir("data"):
-        raise FileNotFoundError("Error: The 'data/' subdirectory is missing. "
-                                "Scripts assume data and adjacency matrix files are in 'data/'.")
-    
+    downloadCheck()
     
     thread = threading.Thread(target=collect_metrics, kwargs={'failsafe': True})
     thread.start()
