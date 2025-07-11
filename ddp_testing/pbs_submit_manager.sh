@@ -6,7 +6,7 @@ nodes=(1 2 4 8 16 32)
 gpus=(4)
 
 # modes to iterate over
-modes=("index")
+modes=("index" "baseline")
 
 cwd="$(pwd)"
 
