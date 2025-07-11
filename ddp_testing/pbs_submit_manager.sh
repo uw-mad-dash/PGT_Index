@@ -5,7 +5,7 @@ nodes=(1 2 4 8 16 32)
 # gpus per compute node
 gpus=(4)
 
-# modes to iterate over
+# modes to iterate over: [index, baseline, batch-index, batch-baseline]
 modes=("index" "baseline")
 
 cwd="$(pwd)"
