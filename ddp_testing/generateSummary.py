@@ -8,11 +8,13 @@ def load_stats_from_dir(directory):
     if os.path.isfile(stats_file):
         try:
             df = pd.read_csv(stats_file)
+            systemDf = pd.read_csv(f"{directory}/system_stats.csv")
             return {
                 "Preprocessing time": df["preprocessing"].iloc[0],
                 "Training time": df["training"].iloc[0],
                 "Total_runtime (seconds)": df["total"].iloc[0],
-                "Best Validation MAE": df["v_mae"].iloc[0]
+                "Best Validation MAE": df["v_mae"].iloc[0],
+                "Max System Memory Usage (MB)": systemDf["System_Memory_Used"].max(),
             }
         except Exception as e:
             print(f"Failed to read {stats_file}: {e}")
@@ -37,7 +39,7 @@ def collect_metrics_by_prefix(prefix):
         return None
 
     mean, std = summarize_metrics(results)
-    print(f"\n== Summary for {prefix} ==")
+    print(f"\n== {prefix} DDP Summary ==")
     print("Mean:\n", mean)
     
 
