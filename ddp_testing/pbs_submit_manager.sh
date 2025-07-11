@@ -54,7 +54,7 @@ do
             cp -r data/ $dir/
             cd $dir
 
-            # qsub $target_file
+            qsub $target_file
             sleep 2
             cd .. 
             exit
