@@ -242,6 +242,8 @@ def main():
     batch_size = 64
     epochs = 30
     
+    if args.dataset.lower() == "pems":
+        downloadCheck()
 
     global_start = time.time()
     if dist:

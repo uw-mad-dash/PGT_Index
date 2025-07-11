@@ -87,6 +87,9 @@ def train(args=None, epochs=None, batch_size=None, allGPU=False, debug=False,
         print("Invalid dataset option. The currently supported datasets are: 'pems-bay', 'pems-all-la', and 'pems'")
         return 
     
+    
+
+
     if args.mode == "dask":
         mean = torch.tensor(mean.compute()).to(device)
         std = torch.tensor(std.compute()).to(device)
@@ -322,6 +325,10 @@ def main():
     if not os.path.isdir("data"):
         raise FileNotFoundError("Error: The 'data/' subdirectory is missing. "
                                 "Scripts assume data and adjacency matrix files are in 'data/'.")
+    
+    if args.dataset.lower() == "pems":
+        downloadCheck()
+
     global_start = time.time()
     if dist:
         client = Client(scheduler_file = f"cluster.info")

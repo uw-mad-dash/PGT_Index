@@ -268,9 +268,6 @@ def main():
     epochs = 30
     
 
-    if not os.path.isdir("data"):
-        raise FileNotFoundError("Error: The 'data/' subdirectory is missing. "
-                                "Scripts assume data and adjacency matrix files are in 'data/'.")
     
     if args.mode == "dask" or args.mode == "dask-index":
         print("These are the unoptimized versions of dask and dask-index batching that call '.compute()'" \
@@ -279,6 +276,10 @@ def main():
         choice = input("Enter yes to proceed: ")
         if choice.lower() not in ["yes", "y"]:
             exit()
+    
+    if args.dataset.lower() == "pems":
+        downloadCheck()
+
 
     global_start = time.time()
     if dist:
