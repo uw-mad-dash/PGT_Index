@@ -88,7 +88,7 @@ To run the further optimized Dask distributed data parallel training with batch-
 --------------------------------------------------------------------------------
 **ST-LLM**
 
-To demostrate distributed-index-batching's broader applicability, we intergrated it into [ST-LLM](https://github.com/ChenxiLiu-HNU/ST-LLM/tree/062c7ada936ea89986bd952be18d6ecd198953b3) from [Spatial-Temporal Large Language Model for Traffic Prediction](https://arxiv.org/abs/2401.10134). The code is contained within TODO. Note that a older commit of ST-LLM is used as that is when the version of the model we intergrated index-batching with. 
+To demostrate distributed-index-batching's broader applicability, we intergrated it into [ST-LLM](https://github.com/ChenxiLiu-HNU/ST-LLM/tree/062c7ada936ea89986bd952be18d6ecd198953b3) from [Spatial-Temporal Large Language Model for Traffic Prediction](https://arxiv.org/abs/2401.10134). The code is contained within the ST-LLM folder. Note that a older commit of ST-LLM is used as that is when the version of the model we intergrated index-batching with. 
 
 
 ---------------------------------------------------------
