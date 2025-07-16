@@ -136,7 +136,7 @@ def train(train_dataloader, val_dataloader, batch_size, epochs, edges, DEVICE, a
         t2 = time.time()
        
 
-        print("Epoch {} time: {:.4f} train RMSE: {:.4f} Test MSE: {:.4f}".format(epoch,t2 - t1, sum(loss_list)/len(loss_list), sum(total_loss)/len(total_loss)))
+        print("Epoch {} time: {:.4f} train MSE: {:.4f} Test MSE: {:.4f}".format(epoch,t2 - t1, sum(loss_list)/len(loss_list), sum(total_loss)/len(total_loss)))
         stats.append([epoch, t2-t1, sum(loss_list)/len(loss_list), sum(total_loss)/len(total_loss)])
         t_mse.append(sum(loss_list)/len(loss_list))
         v_mse.append(sum(total_loss)/len(total_loss))
