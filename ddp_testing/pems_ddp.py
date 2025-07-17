@@ -181,7 +181,7 @@ def train(args=None, epochs=None, batch_size=None, allGPU=False, debug=False,
             # Forward pass
             outputs = model(X_batch, edge_index, edge_weight)  # Shape: (batch_size, seq_length, num_nodes, out_channels)
 
-            # Calculate loss (use only the first output channel, assuming it's the target)
+            # Calculate loss
             loss = masked_mae_loss((outputs * std) + mean, (y_batch * std) + mean)
 
             # Backward pass
