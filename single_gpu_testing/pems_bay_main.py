@@ -8,10 +8,8 @@ from torch.utils.data import DataLoader, TensorDataset
 import torch.nn as nn
 import torch.optim as optim
 import threading
-import os
-
-
 from utils import *
+import os
 
 
 
@@ -67,6 +65,8 @@ def train(train_dataloader, val_dataloader, mean, std, epochs, seq_length, num_n
                 X_batch = X_batch.to(device).float()
                 y_batch = y_batch.to(device).float()
             # Forward pass
+
+            
             outputs = model(X_batch, edge_index, edge_weight)  # Shape: (batch_size, seq_length, num_nodes, out_channels)
 
             
@@ -197,14 +197,10 @@ def main():
         pre_t1 = time.time()
         
         if allGPU == True:
-            # data, mean, std, x_train, x_val, x_test = IndexDataset.preprocess("data/pems-bay.h5", 12,"pems-bay", h5_key="speed", add_time_in_day=True,gpu=0)
-            
-            # version that allows direct comparison to the existing PGT pems-bay dataset - it has a few less entries
+            # version that allows direct comparison to the existing PGT pems-bay dataset
             data, mean, std, x_train, x_val, x_test = IndexDataset.preprocess("data/pems_node_values.npy", 12,"pems-bay", h5_key="speed", add_time_in_day=True,gpu=0, compare_to_pgt=True)
         else:
-            # data, mean, std, x_train, x_val, x_test = IndexDataset.preprocess("data/pems-bay.h5", 12,"pems-bay", h5_key="speed", add_time_in_day=True)
-            
-            # version that allows direct comparison to the existing PGT pems-bay dataset - it has a few less entries
+            # version that allows direct comparison to the existing PGT pems-bay dataset
             data, mean, std, x_train, x_val, x_test = IndexDataset.preprocess("data/pems_node_values.npy",12,"pems-bay", h5_key="speed",add_time_in_day=True, compare_to_pgt=True)
      
         pre_t2 = time.time()

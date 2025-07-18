@@ -152,8 +152,17 @@ def train(args=None, epochs=None, batch_size=None, allGPU=False, debug=False,
             # Forward pass
             outputs = model(X_batch, edge_index, edge_weight)  # Shape: (batch_size, seq_length, num_nodes, out_channels)
 
+            """
+            To match the open-source preprocessing implementation 
+            (https://github.com/liyaguang/DCRNN/blob/master/lib/utils.py#L178),
+            only the first feature (speed) is normalized. We reverse this standardization 
+            before computing MAE.
+            """
+            outputs[...,0] = (outputs[...,0] * std) + mean
+            y_batch[...,0] = (y_batch[...,0] * std) + mean
+            
             # Calculate loss
-            loss = masked_mae_loss((outputs * std) + mean, (y_batch * std) + mean)
+            loss = masked_mae_loss(outputs, y_batch)
 
             # Backward pass
             optimizer.zero_grad()
@@ -195,8 +204,11 @@ def train(args=None, epochs=None, batch_size=None, allGPU=False, debug=False,
                 # Forward pass
                 outputs = model(X_batch, edge_index, edge_weight)  # Shape: (batch_size, seq_length, num_nodes, out_channels)
 
+                outputs[...,0] = (outputs[...,0] * std) + mean
+                y_batch[...,0] = (y_batch[...,0] * std) + mean
+                
                 # Calculate loss
-                loss = masked_mae_loss((outputs * std) + mean, (y_batch * std) + mean)
+                loss = masked_mae_loss(outputs, y_batch)
 
                 val_loss += loss.item()
                 f2 = time.time()
