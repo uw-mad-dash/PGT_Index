@@ -1,5 +1,5 @@
 
-[![Arxiv](https://img.shields.io/badge/ArXiv-2507.11683-blue.svg)](https://arxiv.org/abs/2507.11683)
+[![Arxiv](https://img.shields.io/badge/ArXiv-2507.11683-blue.svg)](https://arxiv.org/abs/2507.11683) [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.16740130.svg)](https://doi.org/10.5281/zenodo.16740130)
 
 
 This repository contains the artifacts associated with the 2025 SC paper "PGT-I: Scaling Spatiotemporal GNNs with Memory-Efficient Distributed Training". The primary purpose of this repository is archival and to consolidate all utilized code in a single location. We integrated a cleaned, refactored, and thoroughly tested version of our methods into the [PyTorch Geoemtric Temporal](https://github.com/benedekrozemberczki/pytorch_geometric_temporal) library, and we recommend using index-batching via the official PGT repository.  
